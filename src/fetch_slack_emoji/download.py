@@ -1,6 +1,7 @@
 # -*- mode: python; coding: utf-8; fill-column: 88; -*-
 import json
 import logging
+import re
 import shutil
 from os.path import splitext
 from pathlib import Path
@@ -44,6 +45,10 @@ def _main(
     )
 
     for name, url in emoji_list:
+        if re.search("^alias:.*$", url) is not None:
+            _logger.debug("%(u)s is an alias; skipping", {"u": url})
+            continue
+
         _logger.debug("Downloading emoji called %(e)s", {"e": name})
         name: str = name + splitext(url)[1]
         out_file: Path = out_dir / name
