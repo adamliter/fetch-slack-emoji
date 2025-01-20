@@ -37,7 +37,7 @@ LOGGING_CONFIG: dict[str, Any] = {
             "propagate": False,
         },
         "fetch_slack_emoji": {
-            "level": "DEBUG",
+            "level": "INFO",
             "handlers": ["json"],
             "propagate": False,
         },

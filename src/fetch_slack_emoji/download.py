@@ -22,7 +22,7 @@ def _main(
         Path, typer.Option(exists=False, file_okay=False, dir_okay=True, writable=True)
     ],
 ) -> None:
-    _logger.debug("Reading list of emoji from %(p)s", {"p": str(emoji_file)})
+    _logger.info("Reading list of emoji from %(p)s", {"p": str(emoji_file)})
 
     with emoji_file.open("r") as f:
         emoji_payload: dict[str, Any] = json.load(f)
@@ -30,14 +30,14 @@ def _main(
             (k, v) for k, v in emoji_payload["emoji"].items()
         ]
 
-    _logger.debug("%(n)d emoji to download", {"n": len(emoji_list)})
+    _logger.info("%(n)d emoji to download", {"n": len(emoji_list)})
 
-    _logger.debug("Target directory is %(d)s", {"d": str(out_dir)})
+    _logger.info("Target directory is %(d)s", {"d": str(out_dir)})
     if not out_dir.exists():
         _logger.debug("Target directory doesn't exist; creating it")
         out_dir.mkdir()
 
-    _logger.debug("Starting to download emoji")
+    _logger.info("Starting to download emoji")
     st: float = time()
 
     http: urllib3.PoolManager = urllib3.PoolManager(
@@ -59,7 +59,7 @@ def _main(
             shutil.copyfileobj(resp, f)
 
     et: float = time()
-    _logger.debug("Finished downloading emoji after %(s).2f seconds", {"s": (et - st)})
+    _logger.info("Finished downloading emoji after %(s).2f seconds", {"s": (et - st)})
 
 
 def main() -> None:
