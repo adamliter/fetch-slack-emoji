@@ -1,0 +1,31 @@
+# -*- mode: conf-toml; coding: utf-8; -*-
+[project]
+name = "fetch-slack-emoji"
+version = "0.1.0"
+description = "Python script to fetch Slack emoji"
+authors = [
+    {name = "Adam Liter", email = "io@adamliter.org"},
+]
+dependencies = []
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+
+[dependency-groups]
+lint = [
+    "ruff>=0.9.2",
+    "pre-commit>=4.0.1",
+]
+
+[tool.ruff]
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "PT", "RUF", "PERF", "ERA", "LOG", "G"]

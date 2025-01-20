@@ -1,0 +1,28 @@
+# -*- mode: yaml; coding: utf-8; -*-
+---
+default_install_hook_types: [pre-commit]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-added-large-files
+  # Ruff from .venv managed by pdm
+  - repo: local
+    hooks:
+      # Ensure linting with --fix comes before formatting
+      - id: ruff
+        name: ruff-linting
+        description: Linting with Ruff
+        entry: pdm run ruff check --force-exclude --fix
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
+      - id: ruff-format
+        name: ruff-format
+        description: Fortmatting with Ruff
+        entry: pdm run ruff format --force-exclude
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
