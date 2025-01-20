@@ -21,3 +21,16 @@ pdm install
 ``` sh
 pdm run pre-commit install
 ```
+
+## Usage
+
+[This][get-emoji-file] is how I got the `emoji.json` file. Then, you can use
+this Python script like so:
+
+``` sh
+pdm run download --emoji-file downloads/emoji.json --out-dir downloads/emoji
+```
+
+
+<!-- links -->
+[get-emoji-file]: https://gist.github.com/lmarkus/8722f56baf8c47045621?permalink_comment_id=2970482#gistcomment-2970482

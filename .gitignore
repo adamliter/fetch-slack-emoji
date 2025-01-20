@@ -1,4 +1,6 @@
 # -*- mode: gitignore; fill-column: 80; coding: utf-8; -*-
+downloads/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
